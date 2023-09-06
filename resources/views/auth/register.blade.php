@@ -18,7 +18,7 @@
 
         <div class="mt-4">
             <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" id="username" name="username" :value="old('username')" required autofocus />
             <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
@@ -61,4 +61,11 @@
             {{ __('Login') }}
         </a>
     </div>
+
+    <script>
+        // username input can only contain letters, numbers, and underscores
+        document.getElementById('username').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^a-zA-Z0-9_]/g, '');
+        });
+    </script>
 </x-guest-layout>

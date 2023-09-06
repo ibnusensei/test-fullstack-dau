@@ -12,7 +12,7 @@ class ApiController extends Controller
     public function getReferenceNo(Request $request)
     {
         // URL API
-        $url = "https://pay.saebo.id/test-dau/api/v1/transactions";
+        $url = env('API_URL');
 
         // Data Parameter
         $product = Product::find($request->product_id);
@@ -25,7 +25,7 @@ class ApiController extends Controller
 
         // Melakukan request POST ke API
         $response = Http::withHeaders([
-            "x-api-key" => "DATAUTAMA"
+            "x-api-key" => env('API_KEY'),
         ])->post($url, $data);
 
         // Mendapatkan respons JSON
